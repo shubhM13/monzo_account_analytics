@@ -1,0 +1,63 @@
+# models/staging/schema.yml
+version: 2
+
+models:
+  - name: account_closed_clean
+    description: "View for account_closed table"
+    columns:
+      - name: account_id_hashed
+        tests:
+          - not_null
+      - name: closed_ts
+        tests:
+          - not_null
+
+  - name: account_created_clean
+    description: "View for account_created table"
+    columns:
+      - name: account_id_hashed
+        tests:
+          - not_null
+          - unique
+      - name: user_id_hashed
+        tests:
+          - not_null
+      - name: created_ts
+        tests:
+          - not_null
+
+  - name: account_reopened_clean
+    description: "View for account_reopened table"
+    columns:
+      - name: account_id_hashed
+        tests:
+          - not_null
+          - unique
+      - name: reopened_ts
+        tests:
+          - not_null
+
+  - name: account_transactions_clean
+    description: "View for account_transactions table"
+    columns:
+      - name: account_id_hashed
+        tests:
+          - not_null
+      - name: transactions_num
+        tests:
+          - not_null
+      - name: date
+        tests:
+          - not_null
+
+  - name: account_closed_deduped
+    description: "Deduplicated account closed data with the latest record per day per account"
+    columns:
+      - name: account_id_hashed
+        description: "The unique identifier for an account"
+        tests:
+          - not_null
+      - name: closed_ts
+        description: "Timestamp when the account was closed"
+        tests:
+          - not_null

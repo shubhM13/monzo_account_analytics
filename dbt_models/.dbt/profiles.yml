@@ -1,0 +1,11 @@
+dbt_models:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: 'analytics-take-home-test'  # Update this with your project ID
+      dataset: 'monzo_datawarehouse_shubh'  # Update this with your dataset name
+      threads: 4
+      timeout_seconds: 600
+      location: US

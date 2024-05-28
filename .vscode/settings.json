@@ -1,0 +1,7 @@
+{
+    "turntable.dbtVersion": "1.7",
+    "turntable.warehouse": "bigquery",
+    "turntable.environmentVariables": [
+        "DBT_PROFILES_DIR=\"./.dbt/\""
+    ]
+}

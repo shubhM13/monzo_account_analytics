@@ -1,0 +1,1 @@
+select * from {{source('monzo_datawarehouse', 'account_closed')}} 
