@@ -4,7 +4,7 @@ with ranked_accounts as (
         account_id_hashed,
         closed_ts,
         row_number() over (
-            partition by account_id_hashed, cast(closed_ts as date) 
+            partition by account_id_hashed 
             order by closed_ts desc
         ) as row_num
     from {{ source('monzo_datawarehouse', 'account_closed') }}

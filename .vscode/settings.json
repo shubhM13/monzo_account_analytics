@@ -3,5 +3,6 @@
     "turntable.warehouse": "bigquery",
     "turntable.environmentVariables": [
         "DBT_PROFILES_DIR=\"./.dbt/\""
-    ]
+    ],
+    "dbt.enableNewLineagePanel": false
 }

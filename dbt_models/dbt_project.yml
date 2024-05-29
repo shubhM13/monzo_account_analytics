@@ -39,16 +39,19 @@ models:
     clean:
       +database: analytics-take-home-test
       +schema: clean
-      account_closed_clean:
+      account_closed:
         +materialized: view
       account_closed_deduped:
         +materialized: view
-      account_created_clean:
+      account_created:
         +materialized: view
-      account_reopened_clean:
+      account_reopened:
         +materialized: view
-      account_transactions_clean:
+      account_transactions:
         +materialized: view
     mart: 
       +database: analytics-take-home-test
       +schema: mart
+    cohorts: 
+      +database: analytics-take-home-test
+      +schema: cohorts

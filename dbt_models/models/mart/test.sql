@@ -1,1 +1,0 @@
-select * from {{ref('account_closed_clean')}}

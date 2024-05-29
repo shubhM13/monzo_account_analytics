@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: account_closed_clean
+  - name: account_closed
     description: "View for account_closed table"
     columns:
       - name: account_id_hashed
@@ -12,7 +12,7 @@ models:
         tests:
           - not_null
 
-  - name: account_created_clean
+  - name: account_created
     description: "View for account_created table"
     columns:
       - name: account_id_hashed
@@ -26,7 +26,7 @@ models:
         tests:
           - not_null
 
-  - name: account_reopened_clean
+  - name: account_reopened
     description: "View for account_reopened table"
     columns:
       - name: account_id_hashed
@@ -37,7 +37,7 @@ models:
         tests:
           - not_null
 
-  - name: account_transactions_clean
+  - name: account_transactions
     description: "View for account_transactions table"
     columns:
       - name: account_id_hashed
