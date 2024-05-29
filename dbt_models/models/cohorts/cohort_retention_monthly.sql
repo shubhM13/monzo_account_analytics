@@ -2,7 +2,7 @@
 
 WITH cohort_base AS (
     SELECT
-        u.signup_date,
+        DATE_TRUNC(u.signup_date, MONTH) AS cohort,
         u.user_id,
         DATE_DIFF(t.activity_date, u.signup_date, MONTH) AS months_since_signup
     FROM
@@ -14,39 +14,39 @@ WITH cohort_base AS (
 ),
 retention AS (
     SELECT
-        signup_date,
-        months_since_signup AS cohort_month,
+        cohort,
+        months_since_signup AS period,
         COUNT(DISTINCT user_id) AS retained_users
     FROM
         cohort_base
     WHERE
         months_since_signup IS NOT NULL
     GROUP BY
-        signup_date,
+        cohort,
         months_since_signup
 ),
 cohort_size AS (
     SELECT
-        signup_date,
-        COUNT(DISTINCT user_id) AS cohort_size
+        DATE_TRUNC(signup_date, MONTH) AS cohort,
+        COUNT(DISTINCT user_id) AS signed_up_users
     FROM
         {{ ref('user_first_action') }}
     GROUP BY
-        signup_date
+        cohort
 )
 SELECT
-    r.signup_date,
-    r.cohort_month,
+    r.cohort,
+    r.period,
     r.retained_users,
-    c.cohort_size,
-    (r.retained_users / c.cohort_size) * 100 AS retention_percentage
+    c.signed_up_users,
+    (r.retained_users / c.signed_up_users) * 100 AS retention_percentage
 FROM
     retention r
 JOIN
     cohort_size c
-    ON r.signup_date = c.signup_date
+    ON r.cohort = c.cohort
 WHERE 
-    r.signup_date >= '2020-01-01'
+    r.cohort >= '2020-01-01'
 ORDER BY
-    r.signup_date,
-    r.cohort_month
+    r.cohort,
+    r.period
