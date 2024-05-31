@@ -1,10 +1,4 @@
-{{ config(materialized='view') }}
-SELECT
-    AccountID,
-    creation_dt,
-    CurrentStatus,
-    AccountType
-FROM
-    {{ref('dim_account')}}
-WHERE
-    CurrentStatus = 'Open' OR reopening_dt IS NOT NULL
+{{ config(materialized="view") }}
+select account_id, creation_dt, current_status, account_type
+from {{ ref("dim_account") }}
+where current_status = 'Open' or reopening_dt is not null
