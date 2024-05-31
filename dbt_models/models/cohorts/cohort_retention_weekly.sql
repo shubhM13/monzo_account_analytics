@@ -6,7 +6,7 @@ WITH cohort_base AS (
         u.user_id,
         DATE_DIFF(t.activity_date, u.signup_date, WEEK) AS weeks_since_signup
     FROM
-        {{ ref('user_first_action') }} u
+        {{ ref('user_activation') }} u
     LEFT JOIN
         {{ ref('user_activity') }} t
     ON
@@ -30,7 +30,7 @@ cohort_size AS (
         DATE_TRUNC(signup_date, WEEK(MONDAY)) AS cohort,
         COUNT(DISTINCT user_id) AS signed_up_users
     FROM
-        {{ ref('user_first_action') }}
+        {{ ref('user_activation') }}
     GROUP BY
         cohort
 )

@@ -41,11 +41,11 @@ account_status AS (
         ds.date >= ae.event_date
 )
 SELECT
-    date as dt,
+    date,
     COUNT(DISTINCT account_id_hashed) AS open_accounts
 FROM
     account_status
 WHERE
     current_sts = 1
 GROUP BY
-    dt
+    date

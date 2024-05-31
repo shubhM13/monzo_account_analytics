@@ -1,10 +1,10 @@
 {{ config(materialized='view') }}
 SELECT
     AccountID,
-    CreationDate,
+    creation_dt,
     CurrentStatus,
     AccountType
 FROM
     {{ref('dim_account')}}
 WHERE
-    CurrentStatus = 'Open' OR ReopeningDate IS NOT NULL
+    CurrentStatus = 'Open' OR reopening_dt IS NOT NULL

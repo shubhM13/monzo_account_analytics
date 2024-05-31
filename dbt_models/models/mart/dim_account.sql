@@ -4,9 +4,9 @@ SELECT
     ac.created_ts IS NOT NULL AS AccountOpenedFlag,
     acd.closed_ts IS NOT NULL AS AccountClosedFlag,
     ar.reopened_ts IS NOT NULL AS AccountReopenedFlag,
-    DATE(ac.created_ts) AS CreationDate,
-    DATE(acd.closed_ts) AS ClosureDate,
-    DATE(ar.reopened_ts) AS ReopeningDate,
+    DATE(ac.created_ts) AS creation_dt,
+    DATE(acd.closed_ts) AS closure_dt,
+    DATE(ar.reopened_ts) AS reopening_dt,
     CASE
         WHEN ar.reopened_ts IS NOT NULL THEN 'Reopened'
         WHEN (acd.closed_ts IS NOT NULL) 

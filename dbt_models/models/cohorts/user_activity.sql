@@ -2,10 +2,10 @@
 SELECT
     u.user_id,
     u.signup_date,
-    DATE(t.TransactionDate) AS activity_date
+    DATE(t.transaction_date) AS activity_date
 FROM
-    {{ref('user_first_action')}} u
+    {{ref('user_activation')}} u
 INNER JOIN
-    {{ref('fact_active_user_transactions')}} t
-    ON u.user_id = t.UserID
-    AND DATE(t.TransactionDate) > u.signup_date
+    {{ref('fact_valid_user_transactions')}} t
+    ON u.user_id = t.user_id
+    AND DATE(t.transaction_date) > u.signup_date
