@@ -8,8 +8,10 @@ SELECT
     DATE(acd.closed_ts) AS ClosureDate,
     DATE(ar.reopened_ts) AS ReopeningDate,
     CASE
-        WHEN acd.closed_ts IS NOT NULL THEN 'Closed'
         WHEN ar.reopened_ts IS NOT NULL THEN 'Reopened'
+        WHEN (acd.closed_ts IS NOT NULL) 
+              AND 
+              (ar.reopened_ts IS NULL OR ar.reopened_ts < acd.closed_ts) THEN 'Closed'
         ELSE 'Open'
     END AS CurrentStatus,
     ac.account_type AS AccountType,

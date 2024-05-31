@@ -45,8 +45,6 @@ FROM
 JOIN
     cohort_size c
     ON r.cohort = c.cohort
-WHERE 
-    r.cohort >= '2020-01-01'
 ORDER BY
     r.cohort,
     r.period
