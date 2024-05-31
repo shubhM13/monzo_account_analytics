@@ -1,51 +1,35 @@
+{{ config(materialized="table") }}
 
-
-{{ config(materialized='table') }}
-
-WITH account_events AS (
-    SELECT 
-        account_id_hashed, 
-        DATE(created_ts) AS event_date, 
-        1 AS event_type -- 1 for account creation
-    FROM {{ ref('account_created') }}
-    UNION ALL
-    SELECT 
-        account_id_hashed, 
-        DATE(closed_ts) AS event_date, 
-        -1 AS event_type -- -1 for account closure
-    FROM {{ ref('account_closed') }}
-    UNION ALL
-    SELECT 
-        account_id_hashed, 
-        DATE(reopened_ts) AS event_date, 
-        1 AS event_type -- 1 for account reopening
-    FROM {{ ref('account_reopened') }}
-),
-date_sequence AS (
-    SELECT 
-        date
-    FROM {{ ref('dim_date') }}
-    WHERE date BETWEEN (SELECT MIN(event_date) FROM account_events) 
-                     AND (SELECT MAX(event_date) FROM account_events)
-),
-account_status AS (
-    SELECT
-        ds.date,
-        ae.account_id_hashed,
-        SUM(ae.event_type) OVER (PARTITION BY ds.date, ae.account_id_hashed) as current_sts
-    FROM 
-        date_sequence ds
-    LEFT JOIN 
-        account_events ae
-    ON 
-        ds.date >= ae.event_date
-)
-SELECT
-    date,
-    COUNT(DISTINCT account_id_hashed) AS open_accounts
-FROM
-    account_status
-WHERE
-    current_sts = 1
-GROUP BY
-    date
+with
+    account_events as (
+        select account_id_hashed, date(created_ts) as event_date, 1 as event_type  -- 1 for account creation
+        from {{ ref("account_created") }}
+        union all
+        select account_id_hashed, date(closed_ts) as event_date, -1 as event_type  -- -1 for account closure
+        from {{ ref("account_closed") }}
+        union all
+        select account_id_hashed, date(reopened_ts) as event_date, 1 as event_type  -- 1 for account reopening
+        from {{ ref("account_reopened") }}
+    ),
+    date_sequence as (
+        select date
+        from {{ ref("dim_date") }}
+        where
+            date between (select min(event_date) from account_events) and (
+                select max(event_date) from account_events
+            )
+    ),
+    account_status as (
+        select
+            ds.date,
+            ae.account_id_hashed,
+            sum(ae.event_type) over (
+                partition by ds.date, ae.account_id_hashed
+            ) as current_sts
+        from date_sequence ds
+        left join account_events ae on ds.date >= ae.event_date
+    )
+select date, count(distinct account_id_hashed) as open_accounts
+from account_status
+where current_sts = 1
+group by date
