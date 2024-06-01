@@ -1,7 +1,7 @@
 # monzo_account_analytics
 
-- Task 1 -  [here](https://www.notion.so/Monzo-Assessment-Shubham-Mishra-aa99250ba00c4c51bb3e7390c45db150?pvs=21)
-- Task 2 - [here](https://www.notion.so/Monzo-Assessment-Shubham-Mishra-aa99250ba00c4c51bb3e7390c45db150?pvs=21)
+- Task 1 -  https://github.com/shubhM13/monzo_account_analytics/blob/main/dbt_models/models/mart/dim_account.sql
+- Task 2 - https://github.com/shubhM13/monzo_account_analytics/blob/main/dbt_models/models/mart/mt_rolling_7day_active_users.sql
 - DBT Github - https://github.com/shubhM13/monzo_account_analytics
 - Colab Notebooks Github - https://github.com/shubhM13/monzo_account_analytics/tree/main/colab_notebooks
 - Weekly Cohort Retention Analytics  - [here](https://colab.research.google.com/drive/1m5082ef3xuOyh8z10P6mb2lbiK6RjjuV?usp=sharing)
@@ -40,14 +40,15 @@ Requirements:
 
 Implemented in [DBT](https://www.getdbt.com/) on BigQuery with advanced analytics in Google Colab.
 
-## Architecture
+ ##Architecture
 
 The solution uses a Medallion architecture:
 - **Bronze (Raw)**: Raw transactional tables.
 - **Silver (Clean)**: Cleaned and deduplicated data.
 - **Gold (Mart)**: Aggregated facts and dimensions.
 
-![Architecture](https://prod-files-secure.s3.us-west-2.amazonaws.com/70ac1841-8e45-4d72-9375-afb255a48ca9/4fc843d6-b5b1-4f79-a9e2-3929302e778a/monzo_a2x_(1).png)
+<img width="970" alt="image" src="https://github.com/shubhM13/monzo_account_analytics/assets/43113962/ec3a4215-6003-4739-9604-5eab3dc12d95">
+
 
 ## Data Modelling Approach
 
@@ -97,6 +98,7 @@ The approach follows Ralph Kimball’s dimensional modelling with fact and dimen
 
 Implemented in `schema.yml` for uniqueness, completeness, accepted values, integrity, consistency, and range/format.
 
+
 ## 7-Day Rolling Active Users
 
 Analyzed user activity by day and month to identify engagement patterns and inform strategic decisions. Seasonality analysis helps understand high/low activity periods.
@@ -105,9 +107,6 @@ Analyzed user activity by day and month to identify engagement patterns and info
 
 Identify trends and patterns using 7d_rolling_active_users metric. Box plots show distribution of user activity by day and month.
 
-![Weekly Analysis](https://prod-files-secure.s3.us-west-2.amazonaws.com/70ac1841-8e45-4d72-9375-afb255a48ca9/77f0efbf-a9c2-439b-885c-d224c4be1f6c/download_(4).png)
-
-![Monthly Analysis](https://prod-files-secure.s3.us-west-2.amazonaws.com/70ac1841-8e45-4d72-9375-afb255a48ca9/7ec6773e-69e7-497e-b1d2-38c94fa13d7c/download_(5).png)
 
 ## Cohort & Retention Analysis
 
@@ -117,13 +116,10 @@ Cohort analysis helps understand user behavior over time, focusing on retention,
 
 Visualize retention trends over time using log scales for a nuanced view of user engagement.
 
-![Retention Log Curves](https://prod-files-secure.s3.us-west-2.amazonaws.com/70ac1841-8e45-4d72-9375-afb255a48ca9/88f0252c-e565-4af7-8d34-07bc2caafccd/Untitled.png)
-
 ### Retention Matrix
 
 Heatmap visualizes retention percentages for each cohort and period, guiding strategic decisions to enhance user engagement.
 
-![Weekly Retention](https://prod-files-secure.s3.us-west-2.amazonaws.com/70ac1841-8e45-4d72-9375-afb255a48ca9/a782c819-b52d-40f5-b64f-8e4ea7e1c86a/Untitled.png)
 
 More detailed analysis:
 - [Weekly Cohort Retention](https://colab.research.google.com/drive/1m5082ef3xuOyh8z10P6mb2lbiK6RjjuV?usp=sharing)
