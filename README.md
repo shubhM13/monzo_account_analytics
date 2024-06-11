@@ -1,9 +1,9 @@
 # monzo_account_analytics
 
-- Task 1 -  https://github.com/shubhM13/monzo_account_analytics/blob/main/dbt_models/models/mart/dim_account.sql
-- Task 2 - https://github.com/shubhM13/monzo_account_analytics/blob/main/dbt_models/models/mart/mt_rolling_7day_active_users.sql
-- DBT Github - https://github.com/shubhM13/monzo_account_analytics
-- Colab Notebooks Github - https://github.com/shubhM13/monzo_account_analytics/tree/main/colab_notebooks
+- Task 1 -  https://github.com/shubhM13/saas_account_analytics/blob/main/dbt_models/models/mart/dim_account.sql
+- Task 2 - https://github.com/shubhM13/saas_account_analytics/blob/main/dbt_models/models/mart/mt_rolling_7day_active_users.sql
+- DBT Github - https://github.com/shubhM13/saas_account_analytics
+- Colab Notebooks Github - https://github.com/shubhM13/saas_account_analytics/tree/main/colab_notebooks
 - Weekly Cohort Retention Analytics  - [here](https://colab.research.google.com/drive/1m5082ef3xuOyh8z10P6mb2lbiK6RjjuV?usp=sharing)
 - Monthly Cohort Retention Analytics - [here](https://colab.research.google.com/drive/1qgxJlEUPRwT8UTez0v23ZG1C2ZhLiPFQ?usp=sharing)
 - 7d_rolling_active_users Analytics - [here](https://colab.research.google.com/drive/1fEZkPt_DtNM0S5Nqh6HZ_yLTrTrdXVta?usp=sharing)
