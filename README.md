@@ -9,12 +9,7 @@
 - 7d_rolling_active_users Analytics - [here](https://colab.research.google.com/drive/1fEZkPt_DtNM0S5Nqh6HZ_yLTrTrdXVta?usp=sharing)
 - Basic Account Analysis - [here](https://colab.research.google.com/drive/1TGvvpbdfDVFCHEcuzSa8VXJbmiJSh5wh?usp=sharing)
 
-# Tasks
-
 ### Provided Data
-
-Big-query Project: `analytics-take-home-test`
-Dataset: `monzo_datawarehouse`
 
 Data from a Banking SaaS application includes:
 1. account_created
@@ -22,13 +17,13 @@ Data from a Banking SaaS application includes:
 3. account_reopened
 4. account_transactions
 
-### Task 1: Account Modelling
+### Account Modelling
 
-Develop a reliable data model representing different Monzo accounts. Ensure accuracy, completeness, usability, and documentation. Implement tests to validate data integrity.
+To develop a reliable data model representing different Monzo accounts. Ensure accuracy, completeness, usability, and documentation. Implement tests to validate data integrity.
 
-### Task 2: 7-day Active Users
+### 7-day Active Users
 
-Calculate the 7d_active_users metric: users with transactions over the past 7 days divided by users with at least one open account.
+To calculate the 7d_active_users metric: users with transactions over the past 7 days divided by users with at least one open account.
 
 Requirements:
 - Intuitive and flexible data model
